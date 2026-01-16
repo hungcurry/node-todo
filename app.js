@@ -43,10 +43,11 @@ console.log(``  , path.parse('/xx/yy/zz.js'))
 // ~Create a simple HTTP server ...
 // ===================
 // *啟動 本地伺服器
-// http://localhost:1223/
+// http://localhost:8080/
 
 // *雲端伺服器
-// http://
+// https://node-todo.zeabur.app/
+// https://node-todo.zeabur.app/todos
 
 const errHandle = require('./errorHandle');
 const http = require('http');
