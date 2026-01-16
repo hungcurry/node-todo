@@ -89,6 +89,14 @@ const requestListener = (req, res)=>{
     body+=chunk;
   })
 
+  // / 根目錄
+  if(req.url=="/"){
+    res.writeHead(200,headers);
+    res.write(JSON.stringify({
+        "data": "Hello World 這是雲端測試todos",
+    }));
+    res.end();
+  }
   // GET
   if(req.url=="/todos" && req.method == "GET"){
     res.writeHead(200,headers);
