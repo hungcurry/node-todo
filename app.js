@@ -213,7 +213,7 @@ const requestListener = (req, res)=>{
 }
 const server = http.createServer(requestListener);
 // server.listen(1223);
-server.listen(8080);
+server.listen(process.env.PORT || 8080);
 
 
 
