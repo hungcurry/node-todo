@@ -101,7 +101,7 @@ const requestListener = (req, res)=>{
 
   // * 如果路由是以 / 開頭,就交給 express 處理
   // * 純粹測試 morgan 用 ,實際上不會這樣寫
-  if (req.url.startsWith('/')) {
+  if (req.url === '/') {
     app(req, res); // 交給 Express
     return;
   }
