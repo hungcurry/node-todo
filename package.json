@@ -15,6 +15,7 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "morgan": "^1.10.1",
     "nodemon": "^3.1.11"
   }
 }

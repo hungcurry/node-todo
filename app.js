@@ -3,8 +3,6 @@
 // ===================
 // PATH
 const path = require('path');
-const express = require('express');
-// console.log(express);
 
 // ~__dirname 目前檔案所在-資料夾路徑
 console.log(``  , __dirname) 
@@ -37,7 +35,18 @@ console.log(``  , path.extname('/xx/yy/zz.js'))
 console.log(``  , path.parse('/xx/yy/zz.js'))
 // => 回傳 { root: '/', dir: '/xx/yy', base: 'zz.js', ext: '.js', name: 'zz' }
 
+console.log(`---------------------`);
+const express = require('express');
+// console.log(express);
+const logger = require('morgan');
+const app = express();
+app.use(logger('dev'));
 
+// / 根目錄
+app.get('/', (req, res) => {
+  res.json({ data: 'Hello World 這是雲端測試todos' });
+  // GET / 200 2.434 ms - 46
+});
 
 // ===================
 // ~Create a simple HTTP server ...
@@ -90,14 +99,13 @@ const requestListener = (req, res)=>{
     body+=chunk;
   })
 
-  // / 根目錄
-  if(req.url=="/"){
-    res.writeHead(200,headers);
-    res.write(JSON.stringify({
-        "data": "Hello World 這是雲端測試todos",
-    }));
-    res.end();
+  // * 如果路由是以 / 開頭,就交給 express 處理
+  // * 純粹測試 morgan 用 ,實際上不會這樣寫
+  if (req.url.startsWith('/')) {
+    app(req, res); // 交給 Express
+    return;
   }
+
   // GET
   if(req.url=="/todos" && req.method == "GET"){
     res.writeHead(200,headers);
@@ -214,7 +222,3 @@ const requestListener = (req, res)=>{
 const server = http.createServer(requestListener);
 // server.listen(1223);
 server.listen(process.env.PORT || 8080);
-
-
-
-
